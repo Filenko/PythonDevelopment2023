@@ -1,4 +1,3 @@
-import sys
 from cowsay import cowsay, list_cows
 import argparse
 
