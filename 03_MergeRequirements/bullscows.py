@@ -3,6 +3,21 @@ import argparse
 import random
 import os
 import cowsay
+import io
+
+myCow = cowsay.read_dot_cow(io.StringIO("""
+ $thoughts
+  $thoughts 
+            ＿＿＿
+          |        |
+　　　　　| 　_　 _| 
+　 　　　／`ミ _x 彡 
+　　 　 /　　　 　 | 
+　　　 /　 ヽ　　 ﾉ 
+　／￣|　　 |　|　| 
+　| (￣ヽ＿_ヽ_)_)
+
+"""))
 
 
 def bullscows(guess: str, secret: str) -> (int, int):
@@ -22,7 +37,7 @@ def gameplay(ask: callable, inform: callable, words: list[str]) -> int:
 
 
 def ask(prompt: str, valid: list[str] = None) -> str:
-    print(cowsay.cowsay(prompt, cow=random.choice(cowsay.list_cows())))
+    print(cowsay.cowsay(prompt, cowfile=myCow))
     guessedWord = input()
     return guessedWord
 
