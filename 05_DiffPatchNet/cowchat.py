@@ -20,18 +20,15 @@ return_when=asyncio.FIRST_COMPLETED)
                 match shlex.split(q.result().decode()):
                     case ["who"]:
                         if me not in cowsToPeers.values():
-                            await clients[me].put(f"You are not able to write until 
-registration!")
+                            await clients[me].put(f"You are not able to write until registration!")
                         else:
                             peersCowsString = ",".join(list(cowsToPeers.keys()))
                             await clients[me].put(f"{peersCowsString}")
                     case ["cows"]:
                         if me not in cowsToPeers.values():
-                            await clients[me].put(f"You are not able to write until 
-registration!")
+                            await clients[me].put(f"You are not able to write until registration!")
                         else:
-                            await clients[me].put(f"{[cow for cow in cowsay.list_cows() if 
-cow not in cowsToPeers]}")
+                            await clients[me].put(f"{[cow for cow in cowsay.list_cows() if cow not in cowsToPeers]}")
                     case ["login", cow]:
                         if cow in cowsay.list_cows():
                             if cow in cowsToPeers:
@@ -43,23 +40,19 @@ cow not in cowsToPeers]}")
                             await clients[me].put("Bad cow name :(")
                     case ["say", cow, *text]:
                         if me not in cowsToPeers.values():
-                            await clients[me].put(f"You are not able to write until 
-registration!")
+                            await clients[me].put(f"You are not able to write until registration!")
                         else:
                             if cow in cowsToPeers:
-                                await 
-clients[cowsToPeers[cow]].put(cowsay.cowsay("".join(text), cow=peersToCows[me]))
+                                await clients[cowsToPeers[cow]].put(cowsay.cowsay("".join(text), cow=peersToCows[me]))
                             else:
                                 await clients[me].put("There's no cow with this name")
                     case ["yield", *text]:
                         if me not in cowsToPeers.values():
-                            await clients[me].put(f"You are not able to write until 
-registration!")
+                            await clients[me].put(f"You are not able to write until registration!")
                         else:
                             for cow in cowsToPeers:
                                 if cowsToPeers[cow] != me:
-                                    await 
-clients[cowsToPeers[cow]].put(cowsay.cowsay("".join(text), cow=peersToCows[me]))
+                                    await clients[cowsToPeers[cow]].put(cowsay.cowsay("".join(text), cow=peersToCows[me]))
                     case ["quit"]:
                         cow = peersToCows[me]
                         peersToCows.pop(me)
